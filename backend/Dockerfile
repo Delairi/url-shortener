@@ -1,28 +1,13 @@
-FROM node:alpine as development
+FROM node:alpine
 
 WORKDIR /usr/backend/app
 
 COPY package*.json ./
 
-RUN npm install 
+RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 4002
 
-FROM node:alpine
-
-ARG NODE_ENV=production
-
-ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /usr/backend/app
-
-COPY package*.json ./
-
-RUN npm install --only=production
-
-COPY --from=development /usr/backend/app/dist ./dist
-
-CMD ["node", "dist/index.js"]
-
+CMD ["npm", "start"]
