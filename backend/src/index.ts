@@ -58,7 +58,6 @@ const Main = async () => {
 
 
     app.get('/', async (req: any, res: any) => {
-        console.log('okkkk')
         const short = req.query.short;
         try {
 
@@ -86,7 +85,6 @@ const Main = async () => {
     app.post('/', async (req: any, res: any) => {
 
         const verify = isUrl({ str: req.body.url })
-        console.log("it is?", verify)
         if (verify) {
 
             const url = (req.body.url).replace(/[^a-zA-Z0-9]/g, "");
