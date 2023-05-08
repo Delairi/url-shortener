@@ -4,6 +4,7 @@ import { createClient, SchemaFieldTypes } from 'redis';
 import randomstring from 'randomstring';
 import dotenv from 'dotenv';
 import isUrl from './utils/IsUrl';
+import path from 'path';
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ const Main = async () => {
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    app.use(express.static(path.join(__dirname, '../build')))
 
     process.env.NODE_ENV == 'development' && app.use(cors({
         origin: 'http://localhost:3002',
@@ -126,6 +128,10 @@ const Main = async () => {
 
 
 
+    })
+
+    app.get('/*', (req: any, res: any) => {
+        res.sendFile(path.join(__dirname, '../build','index.html'));
     })
 
     app.listen(4002, () => {

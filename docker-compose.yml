@@ -11,31 +11,11 @@ services:
         - REDIS_URL=redis:url
       ports:
         - 4002:4002
-    frontend:
-        build:
-          context: ./frontend
-          dockerfile: Dockerfile
-        container_name: front-shortener
-        restart: always
-        environment:
-          - VITE_NODE_ENV=production
-          - VITE_BASE_URL=https://shortener.delairis.com
-          - VITE_BASE_URL_DEV=http://localhost:4002
-          - VITE_SELF_URL_DEV=http://localhost:3002
-        ports:
-          - 3002:3002
-        working_dir: /usr/src/app
-        volumes:
-          - ./frontend:/usr/src/app
-          - /usr/src/app/node_modules
-        command: npm run dev
 
     cache:
       image: redis/redis-stack
       container_name: db-shortener
       restart: always
-      environment:
-        - REDIS_URL=redis:url
       ports:
           - 6379:6379
       volumes:
