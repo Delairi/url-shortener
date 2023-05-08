@@ -1,0 +1,12 @@
+FROM node:alpine
+ARG REDIS_URL=redis://default:Phhblqm2aifX2aOeVAbruiFNNwOVKyuy@redis-19322.c253.us-central1-1.gce.cloud.redislabs.com:19322
+ENV REDIS_URL=${REDIS_URL}
+WORKDIR /usr/backend/app
+
+COPY package*.json ./
+
+RUN npm install 
+
+COPY . .
+
+RUN npm run build

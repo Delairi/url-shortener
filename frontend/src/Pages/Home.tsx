@@ -15,6 +15,8 @@ const Home = () => {
   const [Where, setWhere] = useState<Where|null>(null)
   const [ProvideLink, setProvideLink] = useState<string|null>(null)
 
+  console.log(import.meta.env.NODE_ENV)
+
   useEffect(() => {
       console.log('rendered')
   }, [])
@@ -50,7 +52,7 @@ const Home = () => {
         <h2 className='text-xl'>Paste the URL to be shortened</h2>
         <div className='flex flex-row gap-5'>
           <Input
-            placeholder="Type something"
+            placeholder="https://..."
             Change={(e) => {
               setProvideLink(e.target.value)
             }}

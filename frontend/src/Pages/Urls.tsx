@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { BASE_URL, SELF_URL } from '../Urls'
 const Urls = () => {
 
   const { url } = useParams()
-  const [Loading, setLoading] = useState(false)
+  const Loading = false
   const GetUrl = () => {
     fetch(`${BASE_URL}?short=${url}`).then(r => r.json()).then(data => {
       console.log(data)
