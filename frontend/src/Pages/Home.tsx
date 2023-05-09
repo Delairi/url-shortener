@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button } from "../Components/Buttons"
 import { Input } from "../Components/Inputs"
 import { ParagraphLink } from "../Components/Texts"
@@ -15,16 +15,9 @@ const Home = () => {
   const [Where, setWhere] = useState<Where|null>(null)
   const [ProvideLink, setProvideLink] = useState<string|null>(null)
 
-  console.log(import.meta.env.NODE_ENV)
-
-  useEffect(() => {
-      console.log('rendered')
-  }, [])
-  
-
   const Shorting = () => {
 
-     fetch(`${BASE_URL}`, {
+     fetch(`${BASE_URL}/api/v1`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -6,8 +6,7 @@ const Urls = () => {
   const { url } = useParams()
   const Loading = false
   const GetUrl = () => {
-    fetch(`${BASE_URL}?short=${url}`).then(r => r.json()).then(data => {
-      console.log(data)
+    fetch(`${BASE_URL}/api/v1?short=${url}`).then(r => r.json()).then(data => {
       if (data.message == 'Not Found') {
         return window.location.href = SELF_URL
 
